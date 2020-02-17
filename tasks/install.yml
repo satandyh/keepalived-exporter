@@ -26,7 +26,7 @@
     - name: Download keepalived_exporter binary to local folder
       become: false
       get_url:
-        url: "https://github.com/tynany/keepalived_exporter/releases/download/v{{ keepalived_exporter_version }}/keepalived_exporter_{{ keepalived_exporter_version }}_linux_{{ go_arch }}.tar.gz"
+        url: "https://github.com/gen2brain/keepalived_exporter/releases/download/v{{ keepalived_exporter_version }}/keepalived_exporter-{{ keepalived_exporter_version }}-{{ go_arch }}.tar.gz"
         dest: "/tmp/keepalived_exporter_{{ keepalived_exporter_version }}_linux_{{ go_arch }}.tar.gz"
         #checksum: "sha256:{{ keepalived_exporter_checksum }}"
       register: _download_binary
