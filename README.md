@@ -1,4 +1,4 @@
-# Ansible Role: frr exporter
+# Ansible Role: keepalived exporter
 
 > This role is fork from [ansible node exporter v0.19.0](https://github.com/cloudalchemy/ansible-node-exporter) role and works with similar principles.
 
@@ -19,9 +19,9 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | ---------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `keepalived_exporter_version`            | 0.3.0            | Keepalived exporter package version. Also accepts latest as parameter.                                                                                                                                                                     |
 | `keepalived_exporter_binary_local_dir`   | "/usr/local/bin" | Allows to use local packages instead of ones distributed on github. As parameter it takes a directory where `keepalived_exporter` binary is stored on host on which ansible is ran. This overrides `keepalived_exporter_version` parameter |
-| `keepalived_exporter_web_listen_address` | "0.0.0.0:9650"   | Address on which frr exporter will listen                                                                                                                                                                                                  |
-| `keepalived_exporter_system_group`       | "keepalived-exp" | Group which will be used in systemd config to start frr_exporter                                                                                                                                                                           |
-| `keepalived_exporter_system_user`        | "keepalived-exp" | User which will be used in systemd config to start frr_exporter                                                                                                                                                                            |
+| `keepalived_exporter_web_listen_address` | "0.0.0.0:9650"   | Address on which keepalived exporter will listen                                                                                                                                                                                           |
+| `keepalived_exporter_system_group`       | "keepalived-exp" | Group which will be used in systemd config to start keepalived_exporter                                                                                                                                                                    |
+| `keepalived_exporter_system_user`        | "keepalived-exp" | User which will be used in systemd config to start keepalived_exporter                                                                                                                                                                     |
 | `keepalived_exporter_create_usergroup`   | true             | Create user and group im case true                                                                                                                                                                                                         |
 
 ## Example
@@ -38,7 +38,7 @@ Use it in a playbook as follows:
 
 ### Playbook for VyOS
 
-You should reuse frr user/group. For do that use in your group_vars `keepalived_exporter_create_usergroup: false`
+You should reuse keepalived user/group. For do that use in your group_vars `keepalived_exporter_create_usergroup: false`
 
 ```yaml
 # Prometheus exporters: ... keepalived, ...
@@ -47,7 +47,7 @@ You should reuse frr user/group. For do that use in your group_vars `keepalived_
   become: true
   gather_facts: false
   roles:
-    # Frr exporter
+    # Keepalived exporter
     # extra vars need only for VyOS - because we not gather any facts
     # be careful with selinux installation - it will try to install selinux by default
     - role: keepalived-exporter
