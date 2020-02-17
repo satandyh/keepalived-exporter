@@ -3,12 +3,12 @@
 [Unit]
 Description=Prometheus Keepalived Exporter
 After=network-online.target
-StartLimitInterval=0
+#StartLimitInterval=0
 
 [Service]
 Type=simple
-User={{ keepalived_exporter_system_user }}
-Group={{ keepalived_exporter_system_group }}
+#User={{ keepalived_exporter_system_user }}
+#Group={{ keepalived_exporter_system_group }}
 ExecStart={{ keepalived_exporter_binary_install_dir }}/keepalived_exporter \
 {% for collector in keepalived_exporter_enabled_collectors -%}
 {%   if not collector is mapping %}
@@ -30,13 +30,13 @@ SyslogIdentifier=keepalived_exporter
 Restart=always
 RestartSec=1
 
-PrivateTmp=yes
+#PrivateTmp=yes
 {% for m in ansible_mounts if m.mount == '/home' %}
-ProtectHome=read-only
+#ProtectHome=read-only
 {% else %}
-ProtectHome=yes
+#ProtectHome=yes
 {% endfor %}
-NoNewPrivileges=yes
+#NoNewPrivileges=yes
 
 {% if keepalived_exporter_systemd_version | int >= 232 %}
 ProtectSystem=strict
